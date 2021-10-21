@@ -1,0 +1,37 @@
+﻿Dialog ID	Dialog	Note
+1	Alcibiades1	
+2	Alcibiades2	
+3	Apology	
+4	Charmides	
+5	Cleitophon	
+6	Cratylus	
+7	Critias	
+8	Crito	
+9	Epinonis	
+10	Euthydemus	
+11	Euthyphro	
+12	Gorgias	
+13	Greater Hippias	
+14	Hipparchus	
+15	Ion	
+16	Laches	
+17	Laws	
+18	Lesser Hippias	
+19	Letters	
+20	Lovers	
+21	Lysis	
+22	Menexenus	
+23	Meno	
+24	Minos	
+25	Parmenides	
+26	Phaedo	
+27	Phaedrus	
+28	Philebus	
+29	Protagoras	
+30	Republic	
+31	Sophist	
+32	Statesman	
+33	Symposium	
+34	Theaetetus	
+35	Theages	
+36	Timaeus	

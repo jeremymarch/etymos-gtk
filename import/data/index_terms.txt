@@ -1,0 +1,28 @@
+﻿BTID	Broad_Term
+1	Animals
+2	Plants
+3	Food/Drink
+4	Rhetoric
+5	Motion
+6	Justice
+7	Religion
+8	Morality
+9	Emotion
+10	Sensation
+11	Mental Activity
+12	Agriculture
+13	Clothes
+14	Space
+15	Time
+16	Body Parts
+17	Number
+18	Weather
+19	Family
+20	Manner
+21	Occupations
+22	War
+23	Geological Features
+24	Size
+25	Tools
+26	Measurement
+27	health

@@ -1,0 +1,38 @@
+﻿AID	Author
+1	Aeschines
+2	Aeschylus
+3	Andocides
+4	Antiphon
+5	Apollonius Rhodius
+6	Aristophanes
+7	Aristotle
+8	Bacchylides
+9	Callimachus
+10	Demades
+11	Demosthenes
+12	Dinarchus
+13	Diodorus
+14	Euclid
+15	Euripides
+16	Flavius Josephus
+17	Herodotus
+18	Hesiod
+19	Homeric Hymns
+20	Homer
+21	Hyperides
+22	Isaeus
+23	Isocrates
+24	Lycurgus
+25	Lysias
+26	New Testament
+27	Old Oligarch
+28	Pausanias
+29	Pindar
+30	Plutarch
+31	Pseudo-Apollonius
+32	Sophocles
+33	Strabo
+34	Theocritus
+35	Theophrastus
+36	Thucydides
+37	Xenophon

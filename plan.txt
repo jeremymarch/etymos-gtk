@@ -1,0 +1,20 @@
+main
+
+connect to mysql
+
+prepare statements
+init main window (load values into lists)
+
+paint main window
+
+
+start main loop
+clean up mysql
+
+
+
+
+1. prepare queries return queryStruct          mysql
+2. execute queries and return result set       mysql
+3. perform operations on result set            signal file
+4. clean up prepared queries before exit       mysql

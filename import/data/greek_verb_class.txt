@@ -1,0 +1,7 @@
+﻿id	verbclass	letters	note
+1	First--Simple Class		
+2	Second--T Class	πτω	
+3	Third-Iota Class	ζω, ττω, σσω	
+4	Fourth--N Class	ν	
+5	Fifth--Inceptive Class	σκω	
+6	Sixth--Mixed Class		
