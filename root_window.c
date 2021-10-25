@@ -41,21 +41,15 @@ sigRootChanged (GtkWidget *entry, gpointer root_Form)
 int
 attachChangeHandlers (rootForm *root_Form)
 {
-  gulong rid;
-  gulong defid;
-  gulong ieid;
-  gulong phoid;
-  gulong noteid;
-
-  rid = g_signal_connect (GTK_WIDGET(root_Form->root), "changed", 
+  g_signal_connect (GTK_WIDGET(root_Form->root), "changed", 
                     G_CALLBACK(sigRootChanged), (gpointer) root_Form);
-  defid = g_signal_connect (GTK_WIDGET(root_Form->def), "changed", 
+  g_signal_connect (GTK_WIDGET(root_Form->def), "changed", 
                     G_CALLBACK(sigRootChanged), (gpointer) root_Form);
-  ieid = g_signal_connect (GTK_WIDGET(root_Form->ie), "changed", 
+  g_signal_connect (GTK_WIDGET(root_Form->ie), "changed", 
                     G_CALLBACK(sigRootChanged), (gpointer) root_Form);
-  phoid = g_signal_connect (GTK_WIDGET(root_Form->phonetic), "changed", 
+  g_signal_connect (GTK_WIDGET(root_Form->phonetic), "changed", 
                     G_CALLBACK(sigRootChanged), (gpointer) root_Form);
-  noteid = g_signal_connect (GTK_WIDGET(root_Form->note), "changed", 
+  g_signal_connect (GTK_WIDGET(root_Form->note), "changed", 
                     G_CALLBACK(sigRootChanged), (gpointer) root_Form);
 
   return 1;

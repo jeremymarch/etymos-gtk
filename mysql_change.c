@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "mysql_change.h"
 
-#define MAX_ERROR_MESG_LEN 256
+#define MAX_ERROR_MESG_LEN 4096
 #define MAX_QUERY_LEN 2048
 
 static char errorMesg[MAX_ERROR_MESG_LEN];
@@ -124,7 +124,7 @@ do_disconnect (MYSQL *conn)
 }
 
 int
-addAntonym (MYSQL *conn, uint word_id, uint antonym_id, char *lang)
+addAntonym (MYSQL *conn, unsigned int word_id, unsigned int antonym_id, char *lang)
 {
   snprintf(query, MAX_QUERY_LEN, "INSERT INTO %s_antonyms "
                        "VALUES (%i, %i)", lang, word_id, antonym_id);
@@ -139,7 +139,7 @@ addAntonym (MYSQL *conn, uint word_id, uint antonym_id, char *lang)
 }
 
 int
-removeAntonym (MYSQL *conn, uint word_id, uint antonym_id, char *lang)
+removeAntonym (MYSQL *conn, unsigned int word_id, unsigned int antonym_id, char *lang)
 {
   snprintf(query, MAX_QUERY_LEN, "DELETE FROM %s_antonyms "
                        "WHERE word_id=%i AND antonym_id=%i", lang, word_id, antonym_id);
@@ -153,7 +153,7 @@ removeAntonym (MYSQL *conn, uint word_id, uint antonym_id, char *lang)
 }
 
 int
-addSynonym (MYSQL *conn, uint word_id, uint synonym_id, char *lang)
+addSynonym (MYSQL *conn, unsigned int word_id, unsigned int synonym_id, char *lang)
 {
   snprintf(query, MAX_QUERY_LEN, "INSERT INTO %s_synonyms "
                        "VALUES (%i, %i)", lang, word_id, synonym_id);
@@ -167,7 +167,7 @@ addSynonym (MYSQL *conn, uint word_id, uint synonym_id, char *lang)
 }
 
 int
-removeSynonym (MYSQL *conn, uint word_id, uint synonym_id, char *lang)
+removeSynonym (MYSQL *conn, unsigned int word_id, unsigned int synonym_id, char *lang)
 {
   snprintf(query, MAX_QUERY_LEN, "DELETE FROM %s_synonyms "
                        "WHERE word_id=%i AND synonym_id=%i", lang, word_id, synonym_id);
@@ -181,7 +181,7 @@ removeSynonym (MYSQL *conn, uint word_id, uint synonym_id, char *lang)
 }
 
 int
-addIndexTerm (MYSQL *conn, uint word_id, uint index_id, char *lang)
+addIndexTerm (MYSQL *conn, unsigned int word_id, unsigned int index_id, char *lang)
 {
   snprintf(query, MAX_QUERY_LEN, "INSERT INTO %s_index_x_words "
                        "VALUES (%i, %i)", lang, word_id, index_id);
@@ -196,7 +196,7 @@ addIndexTerm (MYSQL *conn, uint word_id, uint index_id, char *lang)
 }
 
 int
-removeIndexTerm (MYSQL *conn, uint word_id, uint index_id, char *lang)
+removeIndexTerm (MYSQL *conn, unsigned int word_id, unsigned int index_id, char *lang)
 {
   snprintf(query, MAX_QUERY_LEN, "DELETE FROM %s_index_x_words "
                        "WHERE word_id=%i AND index_id=%i", lang, word_id, index_id);
@@ -216,11 +216,11 @@ validateRoot (const char *root,
               const char *ieroot, 
               const char *phonetic, 
               const char *note,
-              uint *lenRoot,
-              uint *lenDef,
-              uint *lenIeroot,
-              uint *lenPhonetic,
-              uint *lenNote)
+              unsigned int *lenRoot,
+              unsigned int *lenDef,
+              unsigned int *lenIeroot,
+              unsigned int *lenPhonetic,
+              unsigned int *lenNote)
 {
   if ((*lenRoot = strlen(root)) < 1) /* root can't be blank */
   {
@@ -257,7 +257,7 @@ validateRoot (const char *root,
 
 int
 updateRoot (MYSQL *conn, 
-            uint root_id, 
+            unsigned int root_id, 
             const char *root, 
             const char *def, 
             const char *ieroot, 
@@ -266,8 +266,8 @@ updateRoot (MYSQL *conn,
             const char *lang)
 {
   char *end, *query;
-  uint combinedLen;
-  uint lenRoot, lenDef, lenIeroot, lenPhonetic, lenNote;
+  unsigned int combinedLen;
+  unsigned int lenRoot, lenDef, lenIeroot, lenPhonetic, lenNote;
 
   if (!validateRoot (root, def, ieroot, phonetic, note, &lenRoot, &lenDef, &lenIeroot, &lenPhonetic, &lenNote))
     return -1;
@@ -321,8 +321,8 @@ insertRoot (MYSQL *conn,
             const char *lang)
 {
   char *end, *query;
-  uint combinedLen;
-  uint lenRoot, lenDef, lenIeroot, lenPhonetic, lenNote;
+  unsigned int combinedLen;
+  unsigned int lenRoot, lenDef, lenIeroot, lenPhonetic, lenNote;
 
   if (!validateRoot (root, def, ieroot, phonetic, note, &lenRoot, &lenDef, &lenIeroot, &lenPhonetic, &lenNote))
     return -1;
@@ -359,7 +359,7 @@ insertRoot (MYSQL *conn,
 }
 
 int
-deleteRoot (MYSQL *conn, uint root_id, const char *lang)
+deleteRoot (MYSQL *conn, unsigned int root_id, const char *lang)
 {
   MYSQL_RES *res_set;
   MYSQL_ROW row;
@@ -411,7 +411,7 @@ deleteRoot (MYSQL *conn, uint root_id, const char *lang)
  * return 0 for OK to move -1 for not OK
  */
 int
-validateChangeParent (MYSQL *conn, uint ppid, uint word_id, char *lang)
+validateChangeParent (MYSQL *conn, unsigned int ppid, unsigned int word_id, char *lang)
 {
   MYSQL_RES *res_set;
   MYSQL_ROW  row;
@@ -465,7 +465,7 @@ validateChangeParent (MYSQL *conn, uint ppid, uint word_id, char *lang)
  * sets root to that of new parent
  */
 int
-changeParent (MYSQL *conn, uint parent_id, uint word_id, char *lang)
+changeParent (MYSQL *conn, unsigned int parent_id, unsigned int word_id, char *lang)
 {
   MYSQL_RES *res;
   MYSQL_ROW  row;
@@ -520,7 +520,7 @@ changeParent (MYSQL *conn, uint parent_id, uint word_id, char *lang)
  * 3. fails if word has children.
  */
 int
-changeRoot (MYSQL *conn, uint word_id, uint root_id, char *lang)
+changeRoot (MYSQL *conn, unsigned int word_id, unsigned int root_id, char *lang)
 {
   MYSQL_RES *res_set;
   MYSQL_ROW  row;
@@ -571,13 +571,13 @@ changeRoot (MYSQL *conn, uint word_id, uint root_id, char *lang)
 
 int
 validateWord (char *def, 
-              uint  partId, 
+              unsigned int  partId, 
               char *note, 
               char  compound, 
               int   statusId, 
-              uint  genderId,
-              uint *lenDef,
-              uint *lenNote)
+              unsigned int  genderId,
+              unsigned int *lenDef,
+              unsigned int *lenNote)
 {
   if ((*lenNote = strlen(note)) > 255)
   {
@@ -596,17 +596,17 @@ validateWord (char *def,
 
 int
 updateWord (MYSQL *conn, 
-            uint word_id, 
+            unsigned int word_id, 
             const char *def, 
-            uint partId, 
+            unsigned int partId, 
             const char *note, 
             char compound, 
             int statusId, 
-            uint genderId, 
+            unsigned int genderId, 
             const char *lang)
 {
   char *end;
-  uint  lenDef, lenNote;
+  unsigned int  lenDef, lenNote;
 
   if (!validateWord ((char *) def, partId, (char *) note, compound, statusId, genderId, &lenDef, &lenNote))
     return -1;

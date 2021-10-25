@@ -248,11 +248,11 @@ sigRemoveIndex(GtkWidget *button, gpointer word_form)
 gboolean
 sigCreateIndexWindow(GtkWidget *indexView, gpointer data)
 {
-  GtkTreeSelection *selection;
-  GtkTreeModel     *model;
+  GtkTreeSelection *selection = NULL;
+  GtkTreeModel     *model = NULL;
   GtkTreeIter       iter;
-  guint             index_id;
-  indexForm        *res;
+  guint             index_id = 0;
+  indexForm        *res = NULL;
 
   selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(indexView));
   model =     gtk_tree_view_get_model (GTK_TREE_VIEW(indexView));

@@ -1,10 +1,9 @@
-CC = gcc
-INCLUDES = -I/usr/include/mysql
-
-LIBS = -L/usr/local/mysql/lib -lmysqlclient -lz
+CC = gcc -std=c99
+INCLUDES = `mysql_config --cflags`
+LIBS = `mysql_config --libs`
 GTK_INC = `pkg-config --cflags gtk+-2.0`
 GTK_LIBS = `pkg-config --libs gtk+-2.0`
-DEBUG = -g -Wall
+DEBUG = -g -Wall -DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_44 -DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_60 -DGTK_DISABLE_DEPRECATED
 
 all: etymos
 

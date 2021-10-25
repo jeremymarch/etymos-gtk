@@ -1,29 +1,29 @@
 typedef struct {
-  uint  id;
+  unsigned int  id;
   char *indexTerm;
-  uint  parent;
+  unsigned int  parent;
 } indexTree;
 
 int
 makePartList(GtkComboBox *partCombo, gint selectedPart);
 
 int
-selectSynonyms(guint word_id, wordForm *word_form);
+selectSynonyms(unsigned int word_id, wordForm *word_form);
 
 int
-selectAntonyms(guint word_id, wordForm *word_form);
+selectAntonyms(unsigned int word_id, wordForm *word_form);
 
 int
-selectIndex(guint word_id, wordForm *word_form);
+selectIndex(unsigned int word_id, wordForm *word_form);
 
 int
-selectAuthors(guint word_id, wordForm *word_form);
+selectAuthors(unsigned int word_id, wordForm *word_form);
 
 int
-selectWord(guint word_id, wordForm *word_form);
+selectWord(unsigned int word_id, wordForm *word_form);
 
 void
-indexPrintRow (uint wordId, char *word, uint parent, GtkTreeIter *parentIter, GtkTreeStore *indexTreeStore, indexTree *row, uint num_rows);
+indexPrintRow (unsigned int wordId, char *word, unsigned int parent, GtkTreeIter *parentIter, GtkTreeStore *indexTreeStore, indexTree *row, unsigned int num_rows);
 
 int
 requeryIndexTree(GtkTreeView *indexTreeView);

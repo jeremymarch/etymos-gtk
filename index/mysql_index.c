@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include "mysql_index.h"
 
+char * strmov(char * end, char *);
+
 extern MYSQL *conn;
 
 static char queryBuffer[MAX_QUERY_LEN];
@@ -43,14 +45,14 @@ rollbackTrans()
   else
     return 1;
 }
-
+/*
 static char *
 index_strmov(register char *dst, register const char *src)
 {
   while ((*dst++ = *src++)) ;
   return dst-1;
 }
-
+*/
 static void
 print_error (MYSQL *conn, char *message)
 {
@@ -405,7 +407,7 @@ updateTerm(int index_id, const char *term, const char *scope_note, int parent_id
   char *end;
   int   res;
   MYSQL_RES *res_set;
-  MYSQL_ROW row;
+  //MYSQL_ROW row;
 
   snprintf(queryBuffer, MAX_QUERY_LEN, 
           "SELECT preferred_id "
@@ -668,6 +670,7 @@ selectUse(int index_id, indexForm *index)
                         -1);
     end = &use_row[0];
   }
+  return 0;
 }
 
 int
@@ -677,7 +680,7 @@ selectTerm(int index_id, indexForm *index)
   MYSQL_ROW  row;
   gboolean preferred;
   GtkTextBuffer *textBuf;
-  GtkCellRenderer *renderer;
+  //GtkCellRenderer *renderer;
   GtkTreeViewColumn *col;
 /* should this be a left join */
   snprintf(queryBuffer, MAX_QUERY_LEN, 
@@ -705,7 +708,7 @@ selectTerm(int index_id, indexForm *index)
   }
 
     col = gtk_tree_view_get_column (GTK_TREE_VIEW(index->useTreeView), 0);
-    renderer = gtk_cell_renderer_text_new ();
+    //renderer = gtk_cell_renderer_text_new ();
   if (atoi(row[6]) == 0)
   {
     preferred = FALSE;

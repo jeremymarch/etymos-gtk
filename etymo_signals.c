@@ -458,7 +458,7 @@ wordDragDataGet(GtkWidget *wordView, GdkDragContext *context, GtkSelectionData *
   wordStore = gtk_tree_view_get_model(GTK_TREE_VIEW(wordView));
   wordSelection = gtk_tree_view_get_selection(GTK_TREE_VIEW(wordView));
 
-  if (gtk_tree_selection_get_selected(wordSelection, &wordStore, &iter));
+  if (gtk_tree_selection_get_selected(wordSelection, &wordStore, &iter))
   {
     gtk_tree_model_get (wordStore, &iter, 0, &word_id, -1);
     gtk_selection_data_set(seldata,

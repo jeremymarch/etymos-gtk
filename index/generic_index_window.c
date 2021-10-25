@@ -14,7 +14,7 @@
 int
 create_index_add()
 {
-
+	return 0;
 }
 
 gboolean
@@ -23,7 +23,7 @@ sigUpdateTerm(GtkWidget *button, indexForm *index)
   const char *term;
   const char *scope_note;
   const char *see_also;
-  const int  *parent_id;
+  //const int  *parent_id;
   int         preferred;
   GtkTextBuffer *scopeNoteBuffer;
   GtkTextIter startIter, endIter;
@@ -45,12 +45,12 @@ sigUpdateTerm(GtkWidget *button, indexForm *index)
 
   if (updateTerm(index->index_id, term, scope_note, 0, see_also, preferred) < 1)
   {
-    g_printf("%s\n", getError());
-    g_printf("update failed\n");
+    g_print("%s\n", getError());
+    g_print("update failed\n");
   }
   else
   {
-    g_printf("updated!\n");
+    g_print("updated!\n");
     selectTerm(index->index_id, index);
   }
   return FALSE;
@@ -73,11 +73,11 @@ sigRemoveUseGroup(GtkWidget *button, indexForm *index)
   gtk_tree_model_get (useModel, &iter, 0, &index_id, 2, &group, -1);
 
   if (!removeUse(index_id, group))
-    g_printf("remove failed\n");
+    g_print("remove failed\n");
   else
   {
     selectUse(index_id, index);
-    g_printf("removed!\n");
+    g_print("removed!\n");
   }
   return FALSE;
 }
@@ -86,9 +86,9 @@ gboolean
 sigDeleteTerm(GtkWidget *button, indexForm *index)
 {
   if (deleteTerm(index->index_id, NULL, 1))
-    g_printf("deleted!\n");
+    g_print("deleted!\n");
   else
-    g_printf("delete failed\n");
+    g_print("delete failed\n");
 
   return FALSE;
 }
@@ -110,11 +110,11 @@ sigRemoveRelated(GtkWidget *button, indexForm *index)
   gtk_tree_model_get (relModel, &iter, 0, &related_id, -1);
 
   if (!removeRelated(index->index_id, related_id))
-    g_printf("remove failed\n");
+    g_print("remove failed\n");
   else
   {
     selectRelated(index->index_id, index);
-    g_printf("removed!\n");
+    g_print("removed!\n");
   }
   return FALSE;
 }
@@ -145,7 +145,7 @@ sigInsertTerm(GtkWidget *button, indexForm *index)
   const char *term;
   const char *scope_note;
   const char *see_also;
-  const int  *parent_id;
+  //const int  *parent_id;
   GtkTextBuffer *scopeNoteBuffer;
   GtkTextIter startIter, endIter;
 
@@ -161,10 +161,10 @@ sigInsertTerm(GtkWidget *button, indexForm *index)
 
   if (insertTerm(term, scope_note, 0, see_also) < 1)
   {
-    g_printf("insert failed\n");
+    g_print("insert failed\n");
   }
   else
-    g_printf("inserted!\n");
+    g_print("inserted!\n");
   return FALSE;
 }
 
@@ -208,7 +208,7 @@ create_use_list(char *colName)
 indexForm *
 create_index_window(int index_id)
 {
-  GtkWidget *indexWindow;
+  //GtkWidget *indexWindow;
   GtkWidget *indexTable;
   GtkWidget *termLabel;
   GtkWidget *buttonHBox, *updateButton, *deleteButton, *insertButton;
@@ -217,8 +217,8 @@ create_index_window(int index_id)
   GtkWidget *updatedLabel, *createdLabel;
   GtkWidget *preferredLabel;
   GtkWidget *vbox;
-  GtkListStore *useModel;
-  GtkListStore *relatedModel;
+  //GtkListStore *useModel;
+  //GtkListStore *relatedModel;
   indexForm *index;
   GtkTextBuffer *scopeBuffer;
 
@@ -339,7 +339,7 @@ create_index_window(int index_id)
   gtk_container_add(GTK_CONTAINER(index->relatedScrolledWindow), 
                     GTK_WIDGET(index->relatedTreeView));
 
-  relatedModel = (GtkListStore *) gtk_tree_view_get_model(GTK_TREE_VIEW(index->relatedTreeView));
+  //relatedModel = (GtkListStore *) gtk_tree_view_get_model(GTK_TREE_VIEW(index->relatedTreeView));
 
   gtk_table_attach(GTK_TABLE(indexTable), index->relatedScrolledWindow, 0, 2, 9, 10, 
                    GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);

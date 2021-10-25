@@ -7,15 +7,17 @@
 #include "mysql_change.h"
 #include "error.h"
 
+char *int10_to_str(long int val,char *dst,int radix);
+
 extern MYSQL *conn;
 
 void
-indexPrintRow (uint wordId, char *word, uint parent, 
+indexPrintRow (unsigned int wordId, char *word, unsigned int parent, 
                GtkTreeIter *parentIter, GtkTreeStore *indexTreeStore, 
-               indexTree *row, uint num_rows)
+               indexTree *row, unsigned int num_rows)
 {
   GtkTreeIter iter;
-  uint i;
+  unsigned int i;
 
   gtk_tree_store_append (indexTreeStore, &iter, parentIter);
   gtk_tree_store_set (indexTreeStore, &iter,
@@ -38,7 +40,7 @@ requeryIndexTree (GtkTreeView *indexTreeView)
   GtkTreeModel  *indexTreeStore;
   MYSQL_RES     *res_set;
   MYSQL_ROW      row;
-  uint           num_rows;
+  unsigned int           num_rows;
 
   indexTreeStore = gtk_tree_view_get_model (GTK_TREE_VIEW(indexTreeView));
 
@@ -219,7 +221,7 @@ makePartList (GtkComboBox *partCombo, gint selectedPart)
 }
 
 int
-selectSynonyms (guint word_id, wordForm *word_form)
+selectSynonyms (unsigned int word_id, wordForm *word_form)
 {
   MYSQL_RES *res_set;
   MYSQL_ROW  row;
@@ -268,7 +270,7 @@ selectSynonyms (guint word_id, wordForm *word_form)
 }
 
 int
-selectAntonyms (guint word_id, wordForm *word_form)
+selectAntonyms (unsigned int word_id, wordForm *word_form)
 {
   MYSQL_RES *res_set;
   MYSQL_ROW  row;
@@ -317,7 +319,7 @@ selectAntonyms (guint word_id, wordForm *word_form)
 }
 
 int
-selectIndex(guint word_id, wordForm *word_form)
+selectIndex(unsigned int word_id, wordForm *word_form)
 {
   MYSQL_RES *res_set;
   MYSQL_ROW  row;
@@ -366,7 +368,7 @@ selectIndex(guint word_id, wordForm *word_form)
 }
 
 int
-selectAuthors (guint word_id, wordForm *word_form)
+selectAuthors (unsigned int word_id, wordForm *word_form)
 {
   MYSQL_RES *res_set;
   MYSQL_ROW  row;
@@ -415,7 +417,7 @@ selectAuthors (guint word_id, wordForm *word_form)
 }
 
 int
-selectWord (guint word_id, wordForm *word_form)
+selectWord (unsigned int word_id, wordForm *word_form)
 {
   MYSQL_RES *res_set;
   MYSQL_ROW  row;

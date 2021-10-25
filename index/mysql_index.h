@@ -20,7 +20,7 @@ typedef struct {
   GtkWidget *statusBar;
   GtkWidget *useScrolledWindow;
   GtkWidget *relatedScrolledWindow;
-  uint       index_id;
+  unsigned int       index_id;
 } indexForm;
 
 typedef struct {

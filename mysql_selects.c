@@ -9,10 +9,12 @@
 #include <string.h>
 #include <stdlib.h>
 
+char *int10_to_str(long int val,char *dst,int radix);
+
 extern MYSQL *conn;
 
 int
-selectRoot(guint root_id, rootForm *root_form)
+selectRoot(unsigned int root_id, rootForm *root_form)
 {
   MYSQL_RES *res_set;
   MYSQL_ROW  row;
@@ -72,7 +74,7 @@ reQueryWordList(etymosf *etyform, const gchar *likeArg)
   MYSQL_ROW      row;
   char           query[350]; /* should test likeArg length and return if too long--else pos. buff-over-run */
   char          *end;
-  guint          i;
+  unsigned int          i;
 
   wordListStore = (GtkListStore *) gtk_tree_view_get_model (GTK_TREE_VIEW(etyform->wordListView));
   gtk_list_store_clear (GTK_LIST_STORE(wordListStore));
@@ -118,7 +120,7 @@ reQueryWordList(etymosf *etyform, const gchar *likeArg)
 }
 
 gchar *
-indent (gchar *word, guint level)
+indent (gchar *word, unsigned int level)
 {
   gchar *indentedWord;
   gsize  indentLen = level * TAB_SIZE;
@@ -139,11 +141,11 @@ indent (gchar *word, guint level)
 }
 
 void
-itreePrintRow (uint wordId, char *word, uint parent, uint level, 
-               GtkListStore *itreeListStore, struct itree *row, uint num_rows)
+itreePrintRow (unsigned int wordId, char *word, unsigned int parent, unsigned int level, 
+               GtkListStore *itreeListStore, struct itree *row, unsigned int num_rows)
 {
   static GtkTreeIter iter;
-  uint i;
+  unsigned int i;
   char *indentedWord;
 
   indentedWord = indent(word, level);
@@ -172,7 +174,7 @@ itreePrintRow (uint wordId, char *word, uint parent, uint level,
 }
 
 int
-reQueryItreeList(etymosf *etyform, guint root_id)
+reQueryItreeList(etymosf *etyform, unsigned int root_id)
 {
   GtkTreeModel *atreeListStore, *itreeListStore;
   GtkTreeIter iter;
@@ -182,7 +184,7 @@ reQueryItreeList(etymosf *etyform, guint root_id)
   MYSQL_ROW      row;
   MYSQL_ROW      rootRow;
   gchar         *query;
-  uint           num_rows;
+  unsigned int           num_rows;
 
   itreeListStore = gtk_tree_view_get_model (GTK_TREE_VIEW(etyform->itreeListView));
   atreeListStore = gtk_tree_view_get_model (GTK_TREE_VIEW(etyform->alphaListView));
