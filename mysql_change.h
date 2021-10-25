@@ -72,3 +72,4 @@ index_strmov(register char *dst, register const char *src);
 int 
 updateWord(MYSQL *conn, uint word_id, const char *def, uint partId, const char *note, 
            char compound, int status, uint genderId, const char *lang);
+           

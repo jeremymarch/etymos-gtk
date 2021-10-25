@@ -10,6 +10,42 @@
 static char errorMesg[MAX_ERROR_MESG_LEN];
 static char query[MAX_QUERY_LEN];
 
+char *int10_to_str(long int val,char *dst,int radix);
+
+char *int10_to_str(long int val,char *dst,int radix)
+{
+  char buffer[65];
+  register char *p;
+  long int new_val;
+  unsigned long int uval = (unsigned long int) val;
+
+  if (radix < 0)				/* -10 */
+  {
+    if (val < 0)
+    {
+      *dst++ = '-';
+      /* Avoid integer overflow in (-val) for LONGLONG_MIN (BUG#31799). */
+      uval = (unsigned long int)0 - uval;
+    }
+  }
+
+  p = &buffer[sizeof(buffer)-1];
+  *p = '\0';
+  new_val= (long) (uval / 10);
+  *--p = '0'+ (char) (uval - (unsigned long) new_val * 10);
+  val = new_val;
+
+  while (val != 0)
+  {
+    new_val=val/10;
+    *--p = '0' + (char) (val-new_val*10);
+    val= new_val;
+  }
+  while ((*dst++ = *p++) != 0) ;
+  return dst-1;
+}
+
+
 char *
 getError ()
 {
@@ -38,7 +74,7 @@ MYSQL *
 do_connect (char *host_name, char *user_name, char *password, char *db_name,
       unsigned int port_num, char *socket_name, unsigned int flags)
 {
-  MYSQL *conn; /* pointer to connection handler */
+  MYSQL *conn = NULL; /* pointer to connection handler */
 
   conn = mysql_init (NULL); /* allocate, initialize connection handler */
   if (conn == NULL)

@@ -8,6 +8,8 @@
 #include "root_window.h" /* for createRootWindow() ... */
 #include "mysql_selects.h"
 
+extern MYSQL *conn;
+
 static GtkTreeView *
 create_root_list_view_and_model();
 

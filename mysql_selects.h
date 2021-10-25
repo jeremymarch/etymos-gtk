@@ -1,7 +1,7 @@
 #define TAB_SIZE 1
 #define MAX_ROWS 100
 
-struct itree {
+typedef struct itree {
   uint  id;
   char *word;
   uint  parent;
@@ -27,3 +27,4 @@ reQueryRootList(etymosf *etyform, const gchar *arg);
 
 char *
 strmov (register char *dst, register const char *src);
+

@@ -71,8 +71,6 @@ typedef struct {
 etymosf *
 createEtymoWindow();
 
-MYSQL *conn;
-
 gint
 create_options();
 
@@ -145,3 +143,4 @@ init_word_list ();
 
 gboolean
 sigChangeLang(GtkWidget *comboBox, gpointer data);
+

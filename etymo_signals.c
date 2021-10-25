@@ -8,6 +8,8 @@
 #include "root_window.h" /* for createRootWindow() ... */
 #include "mysql_selects.h"
 
+extern MYSQL *conn;
+
 gchar *
 skipIndents(gchar *s)
 {

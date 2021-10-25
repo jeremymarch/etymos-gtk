@@ -7,6 +7,8 @@
 #include "mysql_change.h"
 #include "error.h"
 
+extern MYSQL *conn;
+
 void
 indexPrintRow (uint wordId, char *word, uint parent, 
                GtkTreeIter *parentIter, GtkTreeStore *indexTreeStore, 

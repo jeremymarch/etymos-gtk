@@ -9,6 +9,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+extern MYSQL *conn;
+
 int
 selectRoot(guint root_id, rootForm *root_form)
 {
@@ -276,7 +278,7 @@ reQueryRootList(etymosf *etyform, const gchar *likeArg)
   GtkTreeIter   iter;
   MYSQL_RES    *res_set;
   MYSQL_ROW     row;
-  char          query[150];
+  char          query[250];
   char         *end;
 
   rootListStore = (GtkListStore *) gtk_tree_view_get_model(GTK_TREE_VIEW(etyform->rootListView));

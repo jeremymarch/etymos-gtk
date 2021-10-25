@@ -7,6 +7,8 @@
 #include "etymo_window.h"
 #include "mysql_selects.h"
 
+extern MYSQL *conn;
+
 static gboolean 
 sigUpdateRoot(GtkWidget *button, gpointer data);
 

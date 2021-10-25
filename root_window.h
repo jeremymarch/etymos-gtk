@@ -13,3 +13,4 @@ typedef struct {
 } rootForm;
 
 GtkWindow *createRootWindow (guint new, guint root_id, gchar *language);
+

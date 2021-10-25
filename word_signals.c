@@ -9,6 +9,8 @@
 #include "index/generic_index_window.h"
 #include "word_selects.h"
 
+extern MYSQL *conn;
+
 gboolean
 sigSynRemove(GtkWidget *button, gpointer wf)
 {

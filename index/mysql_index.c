@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include "mysql_index.h"
 
+extern MYSQL *conn;
+
 static char queryBuffer[MAX_QUERY_LEN];
 static char errorBuffer[MAX_ERROR_LEN];
 
@@ -125,7 +127,7 @@ removeRelated(int index_id, int related_id)
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
 #ifdef USE_INNODB
     if (!rollbackTrans())
       return -1;
@@ -148,7 +150,7 @@ addRelated(int index_id, int related_id)
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return -1;
   }
   return mysql_affected_rows(conn);
@@ -167,7 +169,7 @@ removeUse(int index_id, int group)
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return -1;
   }
   return mysql_affected_rows(conn);
@@ -194,12 +196,12 @@ addUse(int index_id, int preferred_id, int group) /* if group == 0 then add new 
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return -1;
   }
   if ((res_set = mysql_store_result (conn)) == NULL)
   {
-    g_printf("store result failed\n");
+    g_print("store result failed\n");
     return -1;
   }
   if (mysql_num_rows(res_set) > 0)
@@ -216,12 +218,12 @@ addUse(int index_id, int preferred_id, int group) /* if group == 0 then add new 
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return -1;
   }
   if ((res_set = mysql_store_result (conn)) == NULL)
   {
-    g_printf("store result failed\n");
+    g_print("store result failed\n");
     return -1;
   }
   if (mysql_num_rows(res_set) > 0)
@@ -238,12 +240,12 @@ addUse(int index_id, int preferred_id, int group) /* if group == 0 then add new 
 
     if (mysql_query(conn, queryBuffer) != 0)
     {
-      g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+      g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
       return -1;
     }
     if ((res_set = mysql_store_result (conn)) == NULL)
     {
-      g_printf("store result failed\n");
+      g_print("store result failed\n");
       return -1;
     }
     if (mysql_num_rows(res_set) == 0)
@@ -268,7 +270,7 @@ addUse(int index_id, int preferred_id, int group) /* if group == 0 then add new 
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return -1;
   }
   return mysql_affected_rows(conn);
@@ -290,13 +292,13 @@ deleteTerm(int index_id, char *foreignTable, int autoDelNonPref)
 
     if (mysql_query(conn, queryBuffer) != 0)
     {
-      g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+      g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
       return -1;
     }
 
     if ((res_set = mysql_store_result (conn)) == NULL)
     {
-      g_printf("store result failed\n");
+      g_print("store result failed\n");
       return -1;
     }
     if (mysql_num_rows(res_set) < 0)
@@ -320,7 +322,7 @@ deleteTerm(int index_id, char *foreignTable, int autoDelNonPref)
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return -1;
   }
   if ((res_set = mysql_store_result(conn)) == NULL)
@@ -339,7 +341,7 @@ deleteTerm(int index_id, char *foreignTable, int autoDelNonPref)
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return -1;
   }
 
@@ -350,7 +352,7 @@ deleteTerm(int index_id, char *foreignTable, int autoDelNonPref)
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return -1;
   }
 
@@ -361,7 +363,7 @@ deleteTerm(int index_id, char *foreignTable, int autoDelNonPref)
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return -1;
   }
 
@@ -372,7 +374,7 @@ deleteTerm(int index_id, char *foreignTable, int autoDelNonPref)
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return -1;
   }
 
@@ -383,7 +385,7 @@ deleteTerm(int index_id, char *foreignTable, int autoDelNonPref)
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return -1;
   }
 
@@ -436,7 +438,7 @@ updateTerm(int index_id, const char *term, const char *scope_note, int parent_id
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return -1;
   }
   if ((res_set = mysql_store_result(conn)) == NULL)
@@ -496,7 +498,7 @@ insertTerm (const char *term, const char *scope_note, int parent_id, const char 
 
   if (mysql_real_query(conn, queryBuffer, end - queryBuffer) != 0)
   {
-    g_printf("query: %s\nError: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query: %s\nError: %s\n", queryBuffer, mysql_error(conn));
     return -1;
   }
 
@@ -513,7 +515,7 @@ insertTerm (const char *term, const char *scope_note, int parent_id, const char 
 
   if (mysql_real_query(conn, queryBuffer, end - queryBuffer) != 0)
   {
-    g_printf("query: %s\nError: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query: %s\nError: %s\n", queryBuffer, mysql_error(conn));
     return -1;
   }
   /* should we automatically try to delete first half if
@@ -539,13 +541,13 @@ selectRelated(int index_id, indexForm *index)
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return 0;
   }
 
   if ((res_set = mysql_store_result (conn)) == NULL)
   {
-    g_printf("store result failed\n");
+    g_print("store result failed\n");
     return 0;
   }
   model = gtk_tree_view_get_model(GTK_TREE_VIEW(index->relatedTreeView));
@@ -580,13 +582,13 @@ selectUseFor(int index_id, indexForm *index)
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return 0;
   }
 
   if ((res_set = mysql_store_result (conn)) == NULL)
   {
-    g_printf("store result failed\n");
+    g_print("store result failed\n");
     return 0;
   }
   model = gtk_tree_view_get_model(GTK_TREE_VIEW(index->useTreeView));
@@ -619,13 +621,13 @@ selectUse(int index_id, indexForm *index)
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return 0;
   }
 
   if ((res_set = mysql_store_result (conn)) == NULL)
   {
-    g_printf("store result failed\n");
+    g_print("store result failed\n");
     return 0;
   }
   model = gtk_tree_view_get_model(GTK_TREE_VIEW(index->useTreeView));
@@ -686,18 +688,18 @@ selectTerm(int index_id, indexForm *index)
 
   if (mysql_query(conn, queryBuffer) != 0)
   {
-    g_printf("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
+    g_print("query failed: %s\nmysql error: %s\n", queryBuffer, mysql_error(conn));
     return 0;
   }
 
   if ((res_set = mysql_store_result (conn)) == NULL)
   {
-    g_printf("store result failed\n");
+    g_print("store result failed\n");
     return 0;
   }
   if ((row = mysql_fetch_row (res_set)) == NULL)
   {
-    g_printf("fetch row failed\n");
+    g_print("fetch row failed\n");
     mysql_free_result(res_set);
     return 0;
   }

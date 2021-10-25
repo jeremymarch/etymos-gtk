@@ -5,11 +5,13 @@
 #include "mysql_change.h" /* for conn I assume */
 
 #define def_host_name   NULL   /* host to connect to (default = localhost) */
-#define def_user_name  "grweb" /* user name (default = your login name) */
-#define def_password   "1234"  /* password (default = none) */
+#define def_user_name  "root" /* user name (default = your login name) */
+#define def_password   "clamclam"  /* password (default = none) */
 #define def_port_num    0      /* use default port */
 #define def_socket_name NULL   /* use default socket name */
-#define def_db_name    "gr"    /* database to use (default = none) */
+#define def_db_name    "europa"    /* database to use (default = none) */
+
+MYSQL *conn;
 
 /*
 TODO:
@@ -84,8 +86,9 @@ main (int argc, char **argv)
 
   conn = do_connect (def_host_name, def_user_name, def_password, def_db_name,
                      def_port_num, def_socket_name, 0);
-  if (conn == NULL)
+  if (conn == NULL) {
     exit (1);
+  }
 
  /* language = loginWindow (window); */
 

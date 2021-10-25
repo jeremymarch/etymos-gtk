@@ -1,5 +1,5 @@
-#define MAX_QUERY_LEN 600
-#define MAX_ERROR_LEN 200
+#define MAX_QUERY_LEN 1024
+#define MAX_ERROR_LEN 2048
 
 extern char *int10_to_str(long val,char *dst,int radix);
 
@@ -28,8 +28,6 @@ typedef struct {
   char term[50];
   int  group;
 } useStruct;
-
-MYSQL *conn;
 
 int
 beginTrans();
